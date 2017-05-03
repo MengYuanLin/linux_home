@@ -1,0 +1,9 @@
+[user]
+	name = MengYuanLin
+	email = l.zeson@outlook.com
+[push]
+	default = upstream
+[merge]
+	conflictstyle = diff3
+[core]
+	editor = emacsclient -a emacs

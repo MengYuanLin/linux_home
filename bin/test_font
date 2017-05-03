@@ -1,0 +1,19 @@
+#! /usr/bin/env  bash
+
+fonts=$(ls -1 /usr/share/consolefonts/)
+for f in $fonts; do
+    setfont $f
+    clear
+    echo "* = * = * = * = * = * = * = * = * = * = * = * = *"
+    echo -e "*\n* Font: ${f}"
+    echo -e "* \tex."
+    echo -e "* \t\tI1l|:\n* \t\t08O\n*\t\tmeng@lin\n*"
+    echo "* = * = * = * = * = * = * = * = * = * = * = * = *"
+    echo ""
+    read -p "Do you want to continue(Y/n): " continue
+
+    if [ "$continue" = "n"  ]; then
+	exit
+    fi
+done
+

@@ -1,0 +1,39 @@
+#! /usr/bin/env bash
+# -*- mode: shell-script; tab-width: 4; -*-
+
+brightness=$(($1+0))
+cd /sys/class/backlight/nv_backlight/ &> /dev/null
+
+if [ "$1" = "on" ]
+then
+	printf '5' > ./brightness
+elif [ "$1" = "off" ]
+then
+	printf '0' > ./brightness
+
+	will_on="Y"
+	read -n1 -p''' -Q- 按 Y|y 打开背光(话说你看不到)
+ -A- 嘻嘻我亂按试试: ''' will_on
+	printf "\n"
+	while [ "$will_on" != "y" -a "$will_on" != "Y" ]
+	do
+		will_on="Y"
+		read -n1 -p''' -Q- 还是那老话: 按 Y|y 打开背光.
+ -A- 我再按一次,就一次: ''' will_on
+		printf "\n"
+	done
+
+	if [ "$will_on" = "Y" -o "$will_on" = "y" ]
+	then
+		printf '5' > ./brightness
+	fi
+elif [ $brightness -le 100 -a $brightness -gt 0 ]
+then
+	printf "$brightness" > ./brightness
+fi
+
+# Local Variables:
+# eval: (shell-script-mode)
+# tab-width: 4
+# End:
+# eval: (font-lock-mode -1)
