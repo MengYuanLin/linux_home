@@ -40,11 +40,16 @@ alias mplayer='mplayer -ao alsa -vo fbdev2 -vfm ffmpeg \
 if [[ ${TERM} = linux ]]; then
     echo "" &>/dev/null
 fi
+
 alias tmux='env TERM=fbterm tmux'
 alias emacs='TERM=rxvt-unicode-256color emacs'
 alias nxemacs='TERM=rxvt-unicode-256color emacs-nox'
 
-export mplayer='mplayer -ao alsa -vo fbdev2 -vfm ffmpeg \ -lavdopts lowres=0:fast:skiploopfilter=all \ -x 1366 -y 702 -zoom -fs -really-quiet'
+function psuxf() {
+    ps uxf | grep -v "grep" | egrep "CPU|PID|$1"
+}
+
+export mplayer
 
 
 # Local Variables:
