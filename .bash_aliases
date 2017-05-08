@@ -25,7 +25,7 @@ alias eccp='sdcv -u 英汉双解计算机词典'
 alias mplayer='mplayer -ao alsa -vo fbdev2 -vfm ffmpeg \
       	-lavdopts lowres=0:fast:skiploopfilter=all \
 	-x 1366 -y 702 -zoom -fs -really-quiet'
-
+alias uplayer='you-get -p "mplayer -ao alsa -vo x11 -vfm ffmpeg -lavdopts lowres=0:fast:skiploopfilter=all -zoom -fs -really-quiet"'
 
 # export FRAMEBUFFER=/dev/fb0 && fbterm -- env TERM=fbterm tmux
 # for T in `l /usr/share/terminfo/*/`; do C=$(infocmp "${T##*/}"
