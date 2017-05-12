@@ -457,14 +457,15 @@
 
 
 (add-hook 'java-mode-hook
-	  (defun jcompile (RUN)
-	    (setq-local cmd (format "javac %s" buffer-file-name))
-	    (if RUN
-		(async-shell-command
-		 (format
-		  "%s && class='%s' && java ${class##*\/}"
-		  cmd (substring buffer-file-name 0 -5)))
-		(async-shell-command cmd)) ))
+	  (lambda ()
+	    (defun jcompile (RUN)
+	      (setq-local cmd (format "javac %s" buffer-file-name))
+	      (if RUN
+		  (async-shell-command
+		   (format
+		    "%s && class='%s' && java ${class##*\/}"
+		    cmd (substring buffer-file-name 0 -5)))
+		  (async-shell-command cmd))) ) )
 
 
 (setq Buffer-menu-mode-hook nil)
@@ -501,7 +502,7 @@
 (defadvice kill-line (before check-position activate)
   (if (member major-mode
               '(emacs-lisp-mode scheme-mode lisp-mode
-		c-mode c++-mode objc-mode js-mode
+		c-mode c++-mode objc-mode js-mode java-mode
 		latex-mode plain-tex-mode))
       (if (and (eolp) (not (bolp)))
           (progn (forward-char 1)
